@@ -1,0 +1,62 @@
+tarefas = []
+
+def adicionar_tarefa(nome, descricao, prioridade):
+    tarefa = {
+        'nome': nome,
+        'descricao': descricao,
+        'prioridade': prioridade,
+        'concluida': False
+    }
+    tarefas.append(tarefa)
+
+def listar_tarefas():
+    for i, tarefa in enumerate(tarefas, 1):
+        status = "Concluída" if tarefa['concluida'] else "Pendente"
+        print(f"{i}. {tarefa['nome']} [{status}] - Prioridade: {tarefa['prioridade']}")
+
+def marcar_concluida(indice):
+    if 0 <= indice < len(tarefas):
+        tarefas[indice]['concluida'] = True
+        print("Tarefa marcada como concluída.")
+    else:
+        print("Índice inválido.")
+
+def exibir_por_prioridade(prioridade):
+    for tarefa in tarefas:
+        if tarefa['prioridade'] == prioridade:
+            print(f"{tarefa['nome']} - {tarefa['descricao']}")
+
+def menu():
+    while True:
+        print("\n" + "="*40)
+        print("         MENU DE TAREFAS         ")
+        print("="*40)
+        print(" 1. Adicionar tarefa")
+        print(" 2. Listar tarefas")
+        print(" 3. Marcar tarefa como concluída")
+        print(" 4. Exibir tarefas por prioridade")
+        print(" 5. Sair")
+        print("="*40)
+        opcao = input("Escolha uma opção: ")
+        if opcao == '1':
+            nome = input("Nome da tarefa: ")
+            descricao = input("Descrição: ")
+            prioridade = input("Prioridade (alta/média/baixa): ")
+            
+            adicionar_tarefa(nome, descricao, prioridade)
+        elif opcao == '2':
+            listar_tarefas()
+        elif opcao == '3':
+            listar_tarefas()
+            indice = int(input("Digite o número da tarefa para marcar como concluída: ")) - 1
+            marcar_concluida(indice)
+        elif opcao == '4':
+            prioridade = input("Digite a prioridade: ")
+            exibir_por_prioridade(prioridade)
+        elif opcao == '5':
+            break
+        else:
+            print("Opção inválida.")
+
+# Inicia o menu
+menu()
