@@ -1,0 +1,7 @@
+
+import os
+
+itens = os.listdir('.')  # Lista arquivos e pastas do diretório atual
+for item in itens:
+    print(item)          # Exibe cada nome no console
+
